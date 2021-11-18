@@ -1,0 +1,17 @@
+extends layout 
+
+block headerLinks
+  .actions 
+    a.add(href="/lists/new")
+
+block main 
+  if todoLists === undefined || todoLists.length === 0
+    p#no_list You don't have any todo lists. Why not create one?
+  else
+    ul#lists
+      each todoList in todoLists 
+        //- Alters class depending if the list is done
+        li(class=todoList.isDone()? "done" : "")
+          a(href=`/lists/${todoList.id}`)
+            h2= todoList.title 
+            p #{todoList.allDone().size()} / #{todoList.size()}

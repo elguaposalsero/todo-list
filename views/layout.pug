@@ -1,0 +1,25 @@
+doctype html 
+
+html(lang="en-US")
+head 
+  title Todo App 
+  //- Can assume we're already in "public" since that's where express will look for static files
+  link(rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans")
+  link(rel="stylesheet" href='/stylesheets/application.css')
+  link(rel="stylesheet" href='/stylesheets/whitespace-reset.css')
+  script(src="/javascripts/application.js")
+body 
+  header 
+    h1 Todo Tracker
+    block headerLinks
+main  
+  - let kinds = Object.keys(flash || {});
+  if kinds.length > 0
+    each kind in kinds
+      each message in flash[kind]
+        li.flash(class=kind)= message
+
+  block main
+
+//- If the error message is not undefined render the message
+//- That means the form needs to save the value

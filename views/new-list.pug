@@ -1,0 +1,19 @@
+extends layout
+block main
+  form(action="/lists" method="post") 
+    dl 
+      dt 
+        label(for="todoListTitle") Enter the title for your new list
+      dd 
+        input(type="text"
+              id="todoListTitle"
+              name="todoListTitle"
+              placeholder="List Title"
+              value=todoListTitle)
+              //- If the todoListTitle variable doesn't exist it will be undefined
+              //- In pug this will ge interpolated into a string in the above expression
+    fieldset.actions
+      input(type="submit" value="Save")
+      a(href="/lists") Cancel
+      //- The input should have a value which is the todoListTitle if it was entered
+      //- Should I just save the title in locals or something? How do I get access to it here?
